@@ -16,6 +16,9 @@ class MyApp extends StatelessWidget {
         'homePage': (_) => HomePage(),
         'mapPage': (_) => MapPage(),
       },
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
+      ),
     );
   }
 }
