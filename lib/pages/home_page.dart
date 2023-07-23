@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_qr_reader/pages/addresses_page.dart';
 import 'package:flutter_qr_reader/pages/history_page.dart';
+import 'package:flutter_qr_reader/services/db_provider.dart';
 import 'package:flutter_qr_reader/services/ui_provider.dart';
 import 'package:flutter_qr_reader/widgets/custom_navigationbar.dart';
 import 'package:flutter_qr_reader/widgets/scan_button.dart';
@@ -35,6 +36,8 @@ class _HomePageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final uiProvider = Provider.of<UiProvider>(context);
     final currentIndex = uiProvider.selectedMenuOpt;
+
+    DBProvider.db.database;
 
     switch (currentIndex) {
       case 0:
