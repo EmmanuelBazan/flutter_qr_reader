@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter_qr_reader/models/scan_model.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -22,6 +23,8 @@ class DBProvider {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     final path = join(documentsDirectory.path, 'ScansDB.db');
 
+    print(path);
+
     //^ create database
     return await openDatabase(
       path,
@@ -37,5 +40,14 @@ class DBProvider {
         ''');
       },
     );
+  }
+
+  insertDB(ScanModel nuevoScan) async {
+    final db = await database;
+    final res = await db.insert('Scans', nuevoScan.toMap());
+
+    //^ res = inserted record id
+    print(res);
+    return res;
   }
 }

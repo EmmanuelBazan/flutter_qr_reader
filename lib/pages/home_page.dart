@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_qr_reader/models/scan_model.dart';
 import 'package:flutter_qr_reader/pages/addresses_page.dart';
 import 'package:flutter_qr_reader/pages/history_page.dart';
 import 'package:flutter_qr_reader/services/db_provider.dart';
@@ -37,7 +38,8 @@ class _HomePageBody extends StatelessWidget {
     final uiProvider = Provider.of<UiProvider>(context);
     final currentIndex = uiProvider.selectedMenuOpt;
 
-    DBProvider.db.database;
+    final tempScan = ScanModel(valor: 'http://emmanuel.com');
+    DBProvider.db.insertDB(tempScan);
 
     switch (currentIndex) {
       case 0:
