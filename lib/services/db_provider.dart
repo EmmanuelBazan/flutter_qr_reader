@@ -77,4 +77,11 @@ class DBProvider {
 
     return dataModel;
   }
+
+  Future<int> updateScan(ScanModel newScan) async {
+    final db = await database;
+    final res = await db.update('Scans', newScan.toMap(),
+        where: 'id = ?', whereArgs: [newScan.id]);
+    return res;
+  }
 }
