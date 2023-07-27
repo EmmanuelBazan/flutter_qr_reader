@@ -50,4 +50,31 @@ class DBProvider {
     print(res);
     return res;
   }
+
+  Future<ScanModel> getScanById(int id) async {
+    final db = await database;
+    final res = await db.query('Scans', where: 'id = ?', whereArgs: [id]);
+
+    final dataModel = ScanModel.fromMap(res.first);
+
+    return dataModel;
+  }
+
+  Future<List<ScanModel>> getAllScans() async {
+    final db = await database;
+    final res = await db.query('Scans');
+
+    final dataModel = res.map((e) => ScanModel.fromMap(e)).toList();
+
+    return dataModel;
+  }
+
+  Future<List<ScanModel>> getScansByType(String tipo) async {
+    final db = await database;
+    final res = await db.query('Scans', where: 'tipo = ?', whereArgs: [tipo]);
+
+    final dataModel = res.map((e) => ScanModel.fromMap(e)).toList();
+
+    return dataModel;
+  }
 }
