@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_qr_reader/pages/pages.dart';
+import 'package:flutter_qr_reader/services/scan_provider.dart';
 import 'package:flutter_qr_reader/services/ui_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -11,7 +12,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => UiProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => UiProvider()),
+        ChangeNotifierProvider(create: (_) => ScanProvider())
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Material App',
