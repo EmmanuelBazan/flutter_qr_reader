@@ -38,9 +38,9 @@ class ScanProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  deleteScanById(int id) async {
-    final res = await DBProvider.db.deleteScan(id);
-    scans.removeWhere((element) => element.id == res);
-    notifyListeners();
+  deleteScanById(int? id) async {
+    final res = await DBProvider.db.deleteScan(id!);
+    // scans.removeWhere((element) => element.id == res);
+    // notifyListeners();
   }
 }
