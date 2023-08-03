@@ -18,6 +18,9 @@ class ScanButton extends StatelessWidget {
 
         final tempScan = ScanModel(valor: 'geo:12.33,43.22');
         DBProvider.db.insertDB(tempScan);
+
+        final tempScan2 = ScanModel(valor: 'https://github.com/EmmanuelBazan');
+        DBProvider.db.insertDB(tempScan2);
         // DBProvider.db.deleteAllScans().then((value) => print(value));
       },
       elevation: 0,
