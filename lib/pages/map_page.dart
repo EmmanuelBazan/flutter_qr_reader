@@ -8,8 +8,11 @@ class MapPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scanProvider = Provider.of<ScanProvider>(context);
-
-    return Container();
+    final ScanModel scan =
+        ModalRoute.of(context)!.settings.arguments as ScanModel;
+    return Scaffold(
+      appBar: AppBar(title: const Text('Mapa')),
+      body: Center(child: Text(scan.valor)),
+    );
   }
 }
