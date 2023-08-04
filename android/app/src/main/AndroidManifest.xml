@@ -13,6 +13,8 @@
         android:label="flutter_qr_reader"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyB2fmVmZVSkG8GYeeSvMkkQ120A22ySMGA"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

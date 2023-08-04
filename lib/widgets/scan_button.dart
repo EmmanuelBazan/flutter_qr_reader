@@ -16,7 +16,7 @@ class ScanButton extends StatelessWidget {
         //     '#3D8BEF', 'Cancelar', false, ScanMode.QR);
         // print(barcodeScanRes);
 
-        final tempScan = ScanModel(valor: 'geo:12.33,43.22');
+        final tempScan = ScanModel(valor: 'geo:19.0512009,-98.2538986');
         DBProvider.db.insertDB(tempScan);
 
         final tempScan2 = ScanModel(valor: 'https://github.com/EmmanuelBazan');
