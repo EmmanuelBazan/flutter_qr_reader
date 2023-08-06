@@ -15,6 +15,8 @@ class _MapPageState extends State<MapPage> {
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
 
+  MapType mapType = MapType.normal;
+
   static const CameraPosition _kLake = CameraPosition(
       bearing: 192.8334901395799,
       target: LatLng(37.43296265331129, -122.08832357078792),
@@ -37,28 +39,41 @@ class _MapPageState extends State<MapPage> {
         markerId: const MarkerId('geo-loc'), position: scan.getLatLng()));
 
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Mapa'),
-          centerTitle: true,
-          actions: [
-            IconButton(
-                onPressed: () async {
-                  final newCam = CameraPosition(
-                      target: scan.getLatLng(), zoom: 17.5, tilt: 60);
-                  await _goToTheMarker(newCam);
-                },
-                icon: const Icon(Icons.location_searching_outlined))
-          ],
-        ),
-        body: GoogleMap(
-          myLocationButtonEnabled: false,
-          markers: markers,
-          mapType: MapType.normal,
-          initialCameraPosition: _kGooglePlex,
-          onMapCreated: (GoogleMapController controller) {
-            _controller.complete(controller);
-          },
-        ));
+      appBar: AppBar(
+        title: const Text('Mapa'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () async {
+                final newCam = CameraPosition(
+                    target: scan.getLatLng(), zoom: 17.5, tilt: 60);
+                await _goToTheMarker(newCam);
+              },
+              icon: const Icon(Icons.location_searching_outlined))
+        ],
+      ),
+      body: GoogleMap(
+        myLocationButtonEnabled: false,
+        markers: markers,
+        mapType: mapType,
+        initialCameraPosition: _kGooglePlex,
+        onMapCreated: (GoogleMapController controller) {
+          _controller.complete(controller);
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          if (mapType == MapType.normal) {
+            mapType = MapType.satellite;
+          } else {
+            mapType = MapType.normal;
+          }
+
+          setState(() {});
+        },
+        child: const Icon(Icons.layers),
+      ),
+    );
   }
 
   Future<void> _goToTheMarker(CameraPosition marker) async {
